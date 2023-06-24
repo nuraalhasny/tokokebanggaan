@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@600&family=Antic+Didone&family=Cinzel:wght@400;600&family=Dancing+Script:wght@600&family=Heebo:wght@200&family=Josefin+Sans:wght@400;600&family=Lobster&family=Londrina+Outline&family=Merriweather+Sans&family=Nosifer&family=Pacifico&family=Roboto:wght@700&display=swap');
+.dashboard{
+    padding: 185px 100px;
+}
+.dashboard .dashboard-text-1 span{
+   font-size: 23px;
+   font-weight: 400;
+   color: #2F4F4F;
+
+}
+.dashboard .dashboard-text-1 h4{
+    font-size: 45px;
+}
+
+.dashboard .detail-btn:hover{
+    font-weight: bold;
+}
+
+.edit-section{
+    padding: 50px;
+    margin: 50px;
+}

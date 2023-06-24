@@ -1,0 +1,64 @@
+@media(max-width:768px) {
+    .main-banner{
+        padding: 50px;
+    }
+    .main-banner .banner-image{
+        display: none;
+    }
+    .main-banner .banner-text h4{
+        font-size: 16px;
+    }
+    .main-banner .banner-text h2{
+        font-size: 30px;
+    }
+    .main-banner .banner-btn{
+        margin-left: 30px;
+    }
+    .treatment-section .banner-img{
+       display: none;
+    }
+    .treatment-section .banner-img img{
+        width: 300px;
+    }
+    .treatment-section .treatment-text h3{
+        font-size: 26px;
+    }
+    .treatment-section .treatment-text p{
+        font-size: 15px;
+    }
+    footer{
+        padding: 100px 0 70px;
+    }
+    .top-footer .widget {
+        margin-bottom: 50px;
+    }
+    .top-footer .row {
+        margin-bottom: -50px;
+    }
+    footer {
+        text-align: center;
+    }
+    footer .bottom-footer .social-links {
+        text-align: center;
+        margin-top: 20px;
+    }
+    footer .widget-contact ul li .contact-tt {
+        max-width: 100%;
+        width: 100%;
+        margin-top: 20px;
+    }
+    footer .widget-contact ul li {
+        width: calc(100% / 2 - 20px);
+        display: inline-block;
+    }
+    footer .widget-contact ul li {
+        width: 60%;
+        display: block;
+    }
+    
+}
+@media (max-width:768px){
+    .content-user .bg{
+        height: 500px;
+    }
+}
