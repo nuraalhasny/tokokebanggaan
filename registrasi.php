@@ -29,12 +29,12 @@ if(isset($_POST['submit'])){
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Lightsome</title>
+	<title>Nur Aisyah</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Shelly - Website" />
 	<meta name="author" content="merkulove">
 	<meta name="keywords" content="" />
-    <link rel="icon" href="assets/img/Pink Typography Inisial Nama NK Logo (1).png">
+    <link rel="icon" href="assets/img/Black White Minimalist Aesthetic Letter Initial Name Monogram Logo.png">
 	<link rel="stylesheet" type="text/css" href="assets/styles/style.css">
     <link rel="stylesheet" type="text/css" href="assets/styles/responsive.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">

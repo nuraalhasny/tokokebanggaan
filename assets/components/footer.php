@@ -5,9 +5,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="widget widget-about">
                             <h2>About us</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                                numquam  </p>
+                            <p>Nur Aisyah adalah Toko daster yang berada di tanah abang Jakarta berdiri sejak 2016 hingga saat ini.  </p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -36,7 +34,7 @@
                                         <img src="assets/img/address.png">
                                         <div class="contact-tt">
                                             <h4>Address</h4>
-                                            <span>Jakarta Barat </span>
+                                            <span>Jakarta Pusat </span>
                                         </div>
                                     </div>
                                 </li>
@@ -47,10 +45,9 @@
                         <div class="widget widget-links">
                             <h3 class="widget-title">Quick Links</h3>
                             <ul>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Product</a></li>
-                                <li><a href="#">Treatment</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="about.php">About</a></li>
+                                <li><a href="product.php">Product</a></li>
+                                <li><a href="contact.php">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -62,7 +59,7 @@
                     <div class="bottom-footer">
                         <div class="row align-items-center">
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <p>© 2022 Copyright Qbeauty All Rights Reserved </p>
+                                <p>© 2022 Copyright Nur Aisyah All Rights Reserved </p>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <ul class="social-links">

@@ -16,7 +16,7 @@
             </div>
             <div class="icon-banner">
             <a href="cart.php" id="cart"><i class="bi bi-cart"></i></a>
-            <a href="login.php" id="login"><i class="bi bi-person"></i></a>
+            <a href="personalprofil.php" id="login"><i class="bi bi-person"></i></a>
 </div>
           </div>
         </div>

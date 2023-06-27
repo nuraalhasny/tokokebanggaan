@@ -12,7 +12,7 @@
 	$email = $_REQUEST['email'];
 	$message = $_REQUEST['message'];
 	
-	$sql = "INSERT INTO mahasiswa (nama, phone,  email, message) VALUES ('$nama', '$phone', '$email', '$message')";
+	$sql = "INSERT INTO contacs (nama, phone,  email, message) VALUES ('$nama', '$phone', '$email', '$message')";
 
 	if ($conn->query($sql) === TRUE){
 		echo "New record created successfully";
@@ -31,12 +31,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Qbeauty</title>
+    <title>Nur Aisyah</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Shelly - Website" />
     <meta name="author" content="merkulove">
     <meta name="keywords" content="" />
-    <link rel="icon" href="assets/img/Pink Typography Inisial Nama NK Logo (1).png">
+    <link rel="icon" href="assets/img/Black White Minimalist Aesthetic Letter Initial Name Monogram Logo.png">
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
     <link rel="stylesheet" type="text/css" href="assets/styles/responsive.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -55,7 +55,8 @@
             <div class="contact-wrap">
                 <div class="contact-form">
                     <div class="row">
-                        <div class="col-lg-8 col-sm-6">
+                       <form name="contact" method="post">
+                       <div class="col-lg-8 col-sm-6">
                             <div class="form-group">
                                 <p><i class="bi bi-person"></i> Name</p>
                                 <input type="text" name="nama" id="name" class="form-control"
@@ -65,14 +66,14 @@
                         <div class="col-lg-8 col-sm-6">
                             <div class="form-group">
                                 <p><i class="bi bi-person"></i> E-mail</p>
-                                <input type="email" name="nama" id="name" class="form-control"
+                                <input type="email" name="email" id="name" class="form-control"
                                     placeholder="Please enter your email">
                             </div>
                         </div>
                         <div class="col-lg-8 col-sm-6">
                             <div class="form-group">
                                 <p><i class="bi bi-telephone"></i> phone</p>
-                                <input type="text" name="nama" id="name" class="form-control"
+                                <input type="text" name="phone" id="name" class="form-control"
                                     placeholder="Please enter your phone number">
                             </div>
                         </div>
@@ -84,8 +85,10 @@
                                     placeholder="Your message"></textarea>
                             </div>
                         </div>
+                        <button class="btn" type="submit">Send</button>
+                       </form>
                     </div>
-                    <button class="btn" type="submit">Send</button>
+                  
                 </div>
             </div>
         </div>
