@@ -89,15 +89,33 @@
                   </div>
                 </div>
                 <div class="col-md-12 col-lg-4">
+                <?php
+                          require_once 'config.php';
+                          
+                          $items = $_SESSION['items'] ?? null;
+                          $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+                          foreach($items as $item) {
+                            $result = $conn->query("SELECT *, (
+                              SELECT nama FROM colors WHERE colors.id = color_id
+                            ) AS color_name, (
+                              SELECT nama FROM sizes WHERE id = ".$item['size']."
+                            ) AS size, (
+                              SELECT url FROM images WHERE product_id = products.id ORDER BY id LIMIT 1
+                            ) AS image
+                            FROM products WHERE id = '".$item['id']."'");
+                              while ($childItem = $result->fetch_assoc()) { ?>
                   <div class="summary">
                     <h3>Summary</h3>
-                    <div class="summary-item"><span class="text">Subtotal</span><span class="price">Rp.2000000</span></div>
-                    <div class="summary-item"><span class="text">Tax</span><span class="price">Rp.2000000</span></div>
-                    <div class="summary-price"><span class="text">Total</span><span class="total-price">$2000000</span></div>
+                    <div class="summary-item"><span class="text">Subtotal</span><span class="price">Rp.<?php echo ($item['qty'] * $childItem['purchase_price'] )?></span></div>
+                    <div class="summary-item"><span class="text">Tax</span><span class="price">Rp.15000</span></div>
+                    <div class="summary-price"><span class="text">Total</span><span class="total-price"> Rp. <?php echo ($item['qty'] * $childItem['purchase_price'] )?></span></div>
                     <a href="payment.php">
                       <button type="button" class="btn-purchase btn-primary btn-lg btn-block">Checkout</button>
                     </a>
                   </div>
+                  <?php
+                  }}
+                  ?>
                 </div>
               </div> 
             </div>

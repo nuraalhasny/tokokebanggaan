@@ -76,7 +76,7 @@ require_once 'config.php';
                   <a href="products.php" class="nav-link">Product</a>
                 </li>
                 <li class="nav-item">
-                  <a href="brand.php" class="nav-link">Brand</a>
+                  <a href="Product-color.php" class="nav-link">Brand</a>
                 </li>
                 <li class="nav-item">
                   <a href="../../pages/ui-components/badges.html" class="nav-link">Category

@@ -127,7 +127,7 @@ require_once 'config.php';
         </div>
         <div class="mb-2">
           <label for="exampleInputPassword1" class="form-label"><span style="color: red;">*</span>stok</label>
-          <input type="number" name="purchase_price" class="form-control" value="">
+          <input type="number" name="stok" class="form-control" value="">
         </div>
         <div class="mb-2">
           <label for="exampleInputPassword1" class="form-label"><span style="color: red;">*</span>Detail</label>

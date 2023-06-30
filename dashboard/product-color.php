@@ -290,10 +290,7 @@ require_once 'config.php';
 
 
 $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-$result = $conn -> query ("SELECT product_has_color.id AS id, products.product AS product_product, colors.nama AS color_nama FROM product_has_color 
-INNER JOIN products ON product_id=products.id
-INNER JOIN colors ON color_id=colors.id
-");
+$result = $conn -> query ("SELECT *, (SELECT nama FROM colors WHERE colors.id = products.color_id) AS color_name FROM products");
 while ($item = $result->fetch_assoc()){
   $conn_size = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
   $result_sizes = $conn_size->query("SELECT id, (
@@ -303,8 +300,8 @@ while ($item = $result->fetch_assoc()){
 ?>
 											<tr>
                         <td><?php echo $item['id']; ?></td>
-												<td><?php echo $item['product_product']; ?></td>
-                        <td><?php echo $item['color_nama']; ?></td>
+												<td><?php echo $item['product']; ?></td>
+                        <td><?php echo $item['color_name']; ?></td>
                         <td>
                           <?php
                             while ($item_size = $result_sizes->fetch_assoc()) {
