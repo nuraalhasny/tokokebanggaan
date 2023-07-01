@@ -37,41 +37,43 @@ foreach($items as $item) {
 require_once dirname(__FILE__) . '/midtrans-config.php';
 require_once dirname(__FILE__) . '/midtrans/Midtrans.php';
 
-try {
-    // Set your Merchant Server Key
-    \Midtrans\Config::$serverKey = MT_SERVER_KEY;
-    // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-    \Midtrans\Config::$isProduction = false;
-    // Set sanitization on (default)
-    \Midtrans\Config::$isSanitized = true;
-    // Set 3DS transaction for credit card to true
-    \Midtrans\Config::$is3ds = true;
-
-    $username = $_SESSION['username'];
-    $sql = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
-    
-    $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $result = $conn -> query ($sql);
-
-    while($row = $result -> fetch_assoc()){
-      $params = array(
-          'transaction_details' => array(
-              'order_id' => rand(),
-              'gross_amount' => $total,
-          ),
-          'customer_details' => array(
-              'first_name' => $row['name'],
-              'email' => $row['email'],
-              'phone' => $row['phone_number'],
-          ),
-      );
+if ($total > 0) {
+  try {
+      // Set your Merchant Server Key
+      \Midtrans\Config::$serverKey = MT_SERVER_KEY;
+      // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+      \Midtrans\Config::$isProduction = false;
+      // Set sanitization on (default)
+      \Midtrans\Config::$isSanitized = true;
+      // Set 3DS transaction for credit card to true
+      \Midtrans\Config::$is3ds = true;
   
-      $snapToken = \Midtrans\Snap::getSnapToken($params);
-    }
-
-} catch (\Throwable $th) {
-    print_r($th);
-    die;
+      $username = $_SESSION['username'];
+      $sql = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
+      
+      $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+      $result = $conn -> query ($sql);
+  
+      while($row = $result -> fetch_assoc()){
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => $total,
+            ),
+            'customer_details' => array(
+                'first_name' => $row['name'],
+                'email' => $row['email'],
+                'phone' => $row['phone_number'],
+            ),
+        );
+    
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+      }
+  
+  } catch (\Throwable $th) {
+      print_r($th);
+      die;
+  }
 }
 
 ?>
@@ -176,7 +178,9 @@ try {
                       <div class="summary-item"><span class="text">Subtotal</span><span class="price">Rp.<?php echo $total;?></span></div>
                       <div class="summary-item"><span class="text">Shipping</span><span class="price">Rp.15000</span></div>
                       <div class="summary-price"><span class="text">Total</span><span class="total-price"> Rp. <?php echo $total;?></span></div>
-                      <button type="button" class="btn-purchase btn-primary btn-lg btn-block" id="checkout">Checkout</button>
+                      <?php if ($total > 0) { ?>
+                        <button type="button" class="btn-purchase btn-primary btn-lg btn-block" id="checkout">Checkout</button>
+                      <?php } ?>
                     </div>
                 </div>
               </div> 
