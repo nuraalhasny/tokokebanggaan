@@ -62,7 +62,7 @@ try {
           'customer_details' => array(
               'first_name' => $row['name'],
               'email' => $row['email'],
-              'phone' => $row['phone'],
+              'phone' => $row['phone_number'],
           ),
       );
   
