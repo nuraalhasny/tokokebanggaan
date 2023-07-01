@@ -3,7 +3,7 @@ require_once 'config.php';
 
 session_start();
 if(isset($_SESSION['username'])) {
-    header('location: profile.php');
+    header('location: personalprofil.php');
 }
 
 if(isset($_POST['submit'])){
@@ -19,17 +19,17 @@ if(isset($_POST['submit'])){
     $result = $conn -> query ($sql);
     if ($result -> num_rows <= 0) {
         $_SESSION['message'] = 'Username Not Found';
-        header('location: index.php');
+        header('location: login.php');
     }
 
     while($row = $result -> fetch_assoc()){
         if (password_verify($password, $row['password'])) {
             $_SESSION['username'] = $row['username'];
             $_SESSION['name'] = $row['name'];
-            header('location: index.php');
+            header('location: personalprofil.php');
         } else {
             $_SESSION['message'] = 'Password in invalid';
-            header('location: index.php');
+            header('location: login.php');
         }
     }
     
@@ -55,6 +55,12 @@ if(isset($_POST['submit'])){
 <body>
     <div class="content-user">
         <div class="container">
+            <?php 
+                if (isset($_SESSION['message'])) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $_SESSION['message']; ?>
+                    </div>
+            <?php } ?>
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="login-title">

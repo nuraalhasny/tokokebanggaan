@@ -1,5 +1,10 @@
 <?php
     session_start();
+    
+    if(!isset($_SESSION['username'])) {
+        $_SESSION['message'] = 'Login Dulu Untuk Melanjutkan';
+        header('location: login.php');
+    }
 
     $id = $_GET['id'];
     $size = $_GET['size'];

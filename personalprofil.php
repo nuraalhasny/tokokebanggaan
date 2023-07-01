@@ -22,6 +22,13 @@ require_once 'config.php';
 </head>
 
 <body>
+	<?php 
+		session_start();
+		if(!isset($_SESSION['username'])) {
+			$_SESSION['message'] = 'Login Dulu Untuk Melanjutkan';
+			header('location: login.php');
+		}
+	?>
 	<?php require_once("assets/components/header.php") ?>
 	<?php require_once("assets/components/second-header.php") ?>
 

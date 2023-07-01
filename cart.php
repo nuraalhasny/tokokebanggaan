@@ -1,3 +1,81 @@
+<!-- Check Is Login -->
+<?php 
+  require_once 'config.php';
+  session_start();
+
+  if(!isset($_SESSION['username'])) {
+      $_SESSION['message'] = 'Login Dulu Untuk Melanjutkan';
+      header('location: login.php');
+  }
+?>
+
+<!-- Count Total -->
+<?php
+$total = 0;
+$items = $_SESSION['items'] ?? null;
+$conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+
+foreach($items as $item) {
+    $result = $conn->query("SELECT *, (
+      SELECT nama FROM colors WHERE colors.id = color_id
+    ) AS color_name, (
+      SELECT nama FROM sizes WHERE id = ".$item['size']."
+    ) AS size, (
+      SELECT url FROM images WHERE product_id = products.id ORDER BY id LIMIT 1
+    ) AS image
+    FROM products WHERE id = '".$item['id']."'");
+
+    while ($childItem = $result->fetch_assoc()) { 
+        $total += $item['qty'] * $childItem['purchase_price'];
+    }
+} ?>
+
+
+<!-- Midtrans Setup -->
+<?php
+
+require_once dirname(__FILE__) . '/midtrans-config.php';
+require_once dirname(__FILE__) . '/midtrans/Midtrans.php';
+
+try {
+    // Set your Merchant Server Key
+    \Midtrans\Config::$serverKey = MT_SERVER_KEY;
+    // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+    \Midtrans\Config::$isProduction = false;
+    // Set sanitization on (default)
+    \Midtrans\Config::$isSanitized = true;
+    // Set 3DS transaction for credit card to true
+    \Midtrans\Config::$is3ds = true;
+
+    $username = $_SESSION['username'];
+    $sql = "SELECT * FROM users WHERE username = '$username' LIMIT 1";
+    
+    $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $result = $conn -> query ($sql);
+
+    while($row = $result -> fetch_assoc()){
+      $params = array(
+          'transaction_details' => array(
+              'order_id' => rand(),
+              'gross_amount' => $total,
+          ),
+          'customer_details' => array(
+              'first_name' => $row['name'],
+              'email' => $row['email'],
+              'phone' => $row['phone'],
+          ),
+      );
+  
+      $snapToken = \Midtrans\Snap::getSnapToken($params);
+    }
+
+} catch (\Throwable $th) {
+    print_r($th);
+    die;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +91,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="<?php echo MT_CLIENT_KEY ?>"></script>
+    <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
     
 	
 </head>
@@ -33,7 +116,6 @@
                       <div class="row">
                         <?php
                           require_once 'config.php';
-                          session_start();
                           $items = $_SESSION['items'] ?? null;
                           $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
                           foreach($items as $item) {
@@ -89,33 +171,13 @@
                   </div>
                 </div>
                 <div class="col-md-12 col-lg-4">
-                <?php
-                          require_once 'config.php';
-                          
-                          $items = $_SESSION['items'] ?? null;
-                          $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-                          foreach($items as $item) {
-                            $result = $conn->query("SELECT *, (
-                              SELECT nama FROM colors WHERE colors.id = color_id
-                            ) AS color_name, (
-                              SELECT nama FROM sizes WHERE id = ".$item['size']."
-                            ) AS size, (
-                              SELECT url FROM images WHERE product_id = products.id ORDER BY id LIMIT 1
-                            ) AS image
-                            FROM products WHERE id = '".$item['id']."'");
-                              while ($childItem = $result->fetch_assoc()) { ?>
-                  <div class="summary">
-                    <h3>Summary</h3>
-                    <div class="summary-item"><span class="text">Subtotal</span><span class="price">Rp.<?php echo ($item['qty'] * $childItem['purchase_price'] )?></span></div>
-                    <div class="summary-item"><span class="text">Tax</span><span class="price">Rp.15000</span></div>
-                    <div class="summary-price"><span class="text">Total</span><span class="total-price"> Rp. <?php echo ($item['qty'] * $childItem['purchase_price'] )?></span></div>
-                    <a href="payment.php">
-                      <button type="button" class="btn-purchase btn-primary btn-lg btn-block">Checkout</button>
-                    </a>
-                  </div>
-                  <?php
-                  }}
-                  ?>
+                    <div class="summary">
+                      <h3>Summary</h3>
+                      <div class="summary-item"><span class="text">Subtotal</span><span class="price">Rp.<?php echo $total;?></span></div>
+                      <div class="summary-item"><span class="text">Shipping</span><span class="price">Rp.15000</span></div>
+                      <div class="summary-price"><span class="text">Total</span><span class="total-price"> Rp. <?php echo $total;?></span></div>
+                      <button type="button" class="btn-purchase btn-primary btn-lg btn-block" id="checkout">Checkout</button>
+                    </div>
                 </div>
               </div> 
             </div>
@@ -125,6 +187,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js
  "></script>
  <script src="assets/js/addtocart.js"></script>
+  <script type="text/javascript">
+      const checkoutButton = document.getElementById('checkout');
+      checkoutButton.addEventListener('click', function () {
+          window.snap.pay('<?php echo $snapToken; ?>');
+      });
+  </script>
 
 </body>
 </html>
