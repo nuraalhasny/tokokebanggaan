@@ -175,6 +175,17 @@ if ($total > 0 && isset($_SESSION['shipping']['price'])) {
                         </div>
                       </div>
                     </div>
+<<<<<<< HEAD
+                  </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <div class="summary">
+                      <h3>Summary</h3>
+                      <div class="summary-item"><span class="text">Subtotal</span><span class="price">Rp.<?php echo $total;?></span></div>
+                      <div class="summary-item"><span class="text">Shipping</span><span class="price">Rp.15000</span></div>
+                      <div class="summary-price"><span class="text">Total</span><span class="total-price"> Rp. <?php echo $total;?></span></div>
+                      <button type="button" class="btn-purchase" id="checkout">Checkout</button>
+=======
                     <div class="col-md-12 col-lg-4">
                         <div class="summary">
                           <?php if(isset($_SESSION['shipping'])) { ?>
@@ -221,6 +232,7 @@ if ($total > 0 && isset($_SESSION['shipping']['price'])) {
                             </form>
                           <?php } ?>
                         </div>
+>>>>>>> 092305e0a27b087832c219a10e2cbc41e2e2d43d
                     </div>
                   </div> 
                 <?php } else { ?>
