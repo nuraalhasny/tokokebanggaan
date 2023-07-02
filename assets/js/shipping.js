@@ -2,7 +2,7 @@ const prov_url = `/shipping/province.php`;
 const city_url = `/shipping/city.php`;
 const cost_url = `/shipping/cost.php`;
 
-$(document).ready(async function() {
+document.addEventListener('DOMContentLoaded', async function() {
     const prov = await GetApi(prov_url);
     const prov_el = qSelect('#prov_id');
 
@@ -18,13 +18,12 @@ $(document).ready(async function() {
         });
         
         prov_el.innerHTML = html;
-        $('#prov_id').select2();
         
 
     }
 
     if (city_el) {
-        $('#prov_id').on('change', async function (e) {
+        qSelect('#prov_id').addEventListener('change', async function (e) {
             const prov_id = prov_el.value;
             const city = await GetApi(city_url+`?prov_id=${prov_id}`);
             let html = '';
@@ -34,9 +33,8 @@ $(document).ready(async function() {
             });
             
             city_el.innerHTML = html;
-            $('#city_id').select2();
 
-            $('#city_id').on('change', function (e) {
+            qSelect('#city_id').addEventListener('change', function (e) {
                 checkButtonEnabled();
             });
             checkButtonEnabled();
@@ -44,13 +42,13 @@ $(document).ready(async function() {
     }
 
     if (address_el) {
-        $('#address').on('change', function (e) {
+        qSelect('#address').addEventListener('change', function (e) {
             checkButtonEnabled();
         });
     }
     
     if (courier_el) {
-        $('#courier').on('change', function (e) {
+        qSelect('#courier').addEventListener('change', function (e) {
             checkButtonEnabled();
         });
     }

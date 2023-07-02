@@ -37,7 +37,7 @@ foreach($items as $item) {
 require_once dirname(__FILE__) . '/midtrans-config.php';
 require_once dirname(__FILE__) . '/midtrans/Midtrans.php';
 
-if ($total > 0) {
+if ($total > 0 && isset($_SESSION['shipping']['price'])) {
   try {
       // Set your Merchant Server Key
       \Midtrans\Config::$serverKey = MT_SERVER_KEY;
@@ -239,7 +239,6 @@ if ($total > 0) {
           </div>
        </section>
      </main>
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/addtocart.js"></script>
   <script type="text/javascript">
@@ -250,7 +249,6 @@ if ($total > 0) {
         });
       }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="assets/js/helper.js"></script>
   <script src="assets/js/shipping.js"></script>
 

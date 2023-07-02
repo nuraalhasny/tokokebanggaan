@@ -25,6 +25,7 @@ if(isset($_POST['submit'])){
     while($row = $result -> fetch_assoc()){
         if (password_verify($password, $row['password'])) {
             $_SESSION['username'] = $row['username'];
+            $_SESSION['user_id'] = $row['id'];
             $_SESSION['name'] = $row['name'];
             header('location: personalprofil.php');
         } else {
