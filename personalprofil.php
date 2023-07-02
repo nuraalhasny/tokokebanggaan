@@ -1,6 +1,8 @@
 <?php
 require_once 'config.php';
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,6 +40,7 @@ require_once 'config.php';
 			<div class="row d-flex justify-content-center">
 
 				<div class="col-md-4">
+					
 
 					<div class="card  p-3 py-4">
 
@@ -47,14 +50,26 @@ require_once 'config.php';
 						</div>
 
 						<div class="text-center py-4 ">
+						<?php
+
+
+$conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+
+$username = $_SESSION['username'];
+
+
+$result = $conn -> query ("SELECT * FROM users WHERE username = '$username'");
+while ($item = $result->fetch_assoc()){
+?>
+					
 							<span class="bg-secondary p-1 px-4 rounded text-white fw-bold">Personal Profile</span>
-							<p class="mt-2 py-2 fw-bold">Name : <span class="fw-normal">RIKI ADI</span></p>
+							<p class="mt-2 py-2 fw-bold">Name : <span class="fw-normal"><?php echo $item['name'];?></span></p>
 
-							<p class="mt-2 py-2 fw-bold">Username : <span class="fw-normal">Rikiadi</span></p>
-							<p class="mt-2 py-2 fw-bold">Email : <span class="fw-normal">Rikiadi@gmail.com</span></p>
+							<p class="mt-2 py-2 fw-bold">Username : <span class="fw-normal"><?php echo $item['username'];?></span></p>
+							<p class="mt-2 py-2 fw-bold">Email : <span class="fw-normal"><?php echo $item['email'];?></span></p>
 
 
-							<p class="mt-2 py-2 fw-bold">Phone Number : <span class="fw-normal">085857XXXXXX</span></p>
+							<p class="mt-2 py-2 fw-bold">Phone Number : <span class="fw-normal"><?php echo $item['phone_number'];?></span></p>
 
 
 
@@ -69,7 +84,9 @@ require_once 'config.php';
 
 							</div>
 
-
+<?php
+}
+?>
 						</div>
 
 

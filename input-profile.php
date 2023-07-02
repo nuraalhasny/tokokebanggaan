@@ -1,3 +1,26 @@
+<?php
+require_once 'config.php';
+
+ if(count($_REQUEST) > 0){
+	$conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+	
+	if ($conn->connect_error){
+		die("Connection failed: " . $conn->connect_error);
+	}
+	$nama = $_REQUEST['nama'];
+    $phone =$_REQUEST['phone'];
+	$email = $_REQUEST['email'];
+	$message = $_REQUEST['message'];
+	$sql = "INSERT INTO contacs (nama, phone,  email, message) VALUES ('$nama', '$phone', '$email', '$message')";
+
+	if ($conn->query($sql) === TRUE){
+		echo "New record created successfully";
+	}else{
+		echo "Error: " .$sql . "<br>" .$conn->error;
+	}
+	$conn->close();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,21 +61,21 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
                                     <p>Username</p>
-                                    <input type="text" name="nama" id="name" class="form-control"
+                                    <input type="text" name="username" id="name" class="form-control"
                                         >
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
                                     <p>Email</p>
-                                    <input type="email" name="nama" id="name" class="form-control"
+                                    <input type="email" name="email" id="name" class="form-control"
                                         >
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
                                     <p>Phone Number</p>
-                                    <input type="text" name="nama" id="name" class="form-control"
+                                    <input type="text" name="number" id="name" class="form-control"
                                         >
                                 </div>
                             </div>   
