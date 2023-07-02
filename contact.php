@@ -11,7 +11,6 @@
     $phone =$_REQUEST['phone'];
 	$email = $_REQUEST['email'];
 	$message = $_REQUEST['message'];
-	
 	$sql = "INSERT INTO contacs (nama, phone,  email, message) VALUES ('$nama', '$phone', '$email', '$message')";
 
 	if ($conn->query($sql) === TRUE){

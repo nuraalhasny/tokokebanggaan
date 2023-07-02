@@ -32,24 +32,18 @@ require_once 'config.php';
               <div class="carousel-item active text-center">
                 <img src="assets/img/young-woman-beautiful-red-dress-removebg-preview.png" class="img" alt="">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>Daster Sale 50%</h5>
+                  <h5>Daster Super Nyaman</h5>
                   <p>Daster ternyaman dengan harga terjangkau</p>
                 </div>
               </div>
               <div class="carousel-item text-center">
                 <img src="assets/img/young-woman-beautiful-red-dress-removebg-preview.png" class="img" alt="">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>Second slide label</h5>
-                  <p>Some representative placeholder content for the second slide.</p>
+                <h5>Daster Super Murah</h5>
+                  <p>Daster ternyaman dengan harga terjangkau</p>
                 </div>
               </div>
-              <div class="carousel-item  text-center">
-                <img src="assets/img/young-woman-beautiful-red-dress-removebg-preview.png" class="img" alt="">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Third slide label</h5>
-                  <p>Some representative placeholder content for the third slide.</p>
-                </div>
-              </div>
+              
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>

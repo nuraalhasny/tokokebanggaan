@@ -176,7 +176,7 @@ try {
                       <div class="summary-item"><span class="text">Subtotal</span><span class="price">Rp.<?php echo $total;?></span></div>
                       <div class="summary-item"><span class="text">Shipping</span><span class="price">Rp.15000</span></div>
                       <div class="summary-price"><span class="text">Total</span><span class="total-price"> Rp. <?php echo $total;?></span></div>
-                      <button type="button" class="btn-purchase btn-primary btn-lg btn-block" id="checkout">Checkout</button>
+                      <button type="button" class="btn-purchase" id="checkout">Checkout</button>
                     </div>
                 </div>
               </div> 
