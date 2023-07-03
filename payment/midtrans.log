@@ -1,0 +1,10 @@
+2023-07-03 16:59:12 - INSERT INTO payments (order_id, purchase_date, status, fraud_status, `type`) VALUES ('1932062578', NOW(), 'capture', 'accept', 'credit_card')
+2023-07-03 16:59:12 - Store To Database: 1
+2023-07-03 16:59:12 - {"id":"23","invoice_id":null,"order_id":"1932062578","purchase_date":"2023-07-03","status":"capture","fraud_status":"accept","type":"credit_card","total":null}
+2023-07-03 16:59:12 - Transaction order_id: 1932062578 successfully captured using credit_card
+2023-07-03 16:59:13 - UPDATE payments SET `invoice_id` = '26', total = '104000' WHERE order_id='1932062578'
+2023-07-03 17:00:09 - INSERT INTO payments (order_id, purchase_date, status, fraud_status, `type`) VALUES ('340564597', NOW(), 'pending', 'accept', 'bank_transfer')
+2023-07-03 17:00:09 - Store To Database: 1
+2023-07-03 17:00:09 - {"id":"24","invoice_id":null,"order_id":"340564597","purchase_date":"2023-07-03","status":"pending","fraud_status":"accept","type":"bank_transfer","total":null}
+2023-07-03 17:00:09 - Waiting customer to finish transaction order_id: 340564597 using bank_transfer
+2023-07-03 17:00:09 - UPDATE payments SET `invoice_id` = '27', total = '104000' WHERE order_id='340564597'

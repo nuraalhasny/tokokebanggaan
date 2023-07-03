@@ -97,7 +97,7 @@ require_once 'config.php';
             <div class="collapse" id="forms">
               <ul class="nav sub-menu">
                 <li class="nav-item">
-                  <a href="purchase.html" class="nav-link">Purchases</a>
+                  <a href="purchase.php" class="nav-link">Purchases</a>
                 </li>
                 <li class="nav-item">
                   <a href="pages/forms/advanced-elements.html" class="nav-link">Purchase Return</a>
