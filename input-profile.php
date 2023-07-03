@@ -1,3 +1,7 @@
+<?php
+require_once 'config.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +9,6 @@
     <meta charset="UTF-8">
     <title>Nur Aisyah</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shelly - Website" />
-    <meta name="author" content="merkulove">
     <meta name="keywords" content="" />
     <link rel="icon" href="assets/img/Black White Minimalist Aesthetic Letter Initial Name Monogram Logo.png">
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
@@ -38,21 +40,21 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
                                     <p>Username</p>
-                                    <input type="text" name="nama" id="name" class="form-control"
+                                    <input type="text" name="username" id="name" class="form-control"
                                         >
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
                                     <p>Email</p>
-                                    <input type="email" name="nama" id="name" class="form-control"
+                                    <input type="email" name="email" id="name" class="form-control"
                                         >
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-6">
                                 <div class="form-group">
                                     <p>Phone Number</p>
-                                    <input type="text" name="nama" id="name" class="form-control"
+                                    <input type="text" name="number" id="name" class="form-control"
                                         >
                                 </div>
                             </div>   

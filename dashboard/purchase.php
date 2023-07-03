@@ -5,16 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content="Responsive HTML Admin Dashboard Template based on Bootstrap 5">
-  <meta name="author" content="NobleUI">
-  <meta name="keywords"
-    content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
-  <title>qbeauty</title>
+	<title>Nur Aisyah</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,13 +40,8 @@
     <nav class="sidebar">
       <div class="sidebar-header">
         <a href="#" class="sidebar-brand">
-          Q<span>beauty</span>
+          Nur<span>Aisyah</span>
         </a>
-        <div class="sidebar-toggler not-active">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
       </div>
       <div class="sidebar-body">
         <ul class="nav">
@@ -66,7 +52,7 @@
               <span class="link-title">Dashboard</span>
             </a>
           </li>
-          <li class="nav-item nav-category">Components</li>
+          
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false"
               aria-controls="uiComponents">
@@ -82,10 +68,7 @@
                 <li class="nav-item">
                   <a href="product-color.php" class="nav-link">Brand</a>
                 </li>
-                <li class="nav-item">
-                  <a href="../../pages/ui-components/badges.html" class="nav-link">Category
-                  </a>
-                </li>
+               
 
               </ul>
             </div>
@@ -105,11 +88,9 @@
                   <a href="purchase.php" class="nav-link">Purchases</a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/forms/advanced-elements.html" class="nav-link">Purchase Return</a>
+                  <a href="purchasereturn.php" class="nav-link">Purchase Return</a>
                 </li>
-                <li class="nav-item">
-                  <a href="pages/forms/editors.html" class="nav-link">Payment out</a>
-                </li>
+                
 
               </ul>
             </div>

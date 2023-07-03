@@ -2,6 +2,6 @@
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'beautyklinik');
+define('DB_DATABASE', 'tokonuraisyah');
 define("TARGET_DIR", "assets/images/");
 ?>

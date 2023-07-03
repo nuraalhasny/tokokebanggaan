@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-expand-lg ">
         <div class="container">
           <a class="navbar-brand" href="index.php">NUR<b>AISYAH</b></a>
@@ -14,10 +16,22 @@
               
               
             </div>
-            <div class="icon-banner">
-            <a href="cart.php" id="cart"><i class="bi bi-cart"></i></a>
-            <a href="personalprofil.php" id="login"><i class="bi bi-person"></i></a>
-</div>
+            
+            <a class="nav-link" href="cart.php" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-cart"></i>
+          </a>
+          <div class="nav-item dropdown">
+            
+          <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person"></i> User
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+         
+            <li><a class="dropdown-item" href="personalprofil.php">Profile</a></li>
+            <li><a class="dropdown-item" href="logout.php" ty>Log Out</a></li>
+            
+          </ul>
+        </div>
           </div>
         </div>
       </nav>

@@ -9,8 +9,6 @@ require_once 'config.php';
     <meta charset="UTF-8">
     <title>Nur Aisyah</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shelly - Website" />
-    <meta name="author" content="merkulove">
     <meta name="keywords" content="" />
     <link rel="icon" href="assets/img/Black White Minimalist Aesthetic Letter Initial Name Monogram Logo.png">
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
