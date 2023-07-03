@@ -1,25 +1,6 @@
 <?php
 require_once 'config.php';
 
- if(count($_REQUEST) > 0){
-	$conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-	
-	if ($conn->connect_error){
-		die("Connection failed: " . $conn->connect_error);
-	}
-	$nama = $_REQUEST['nama'];
-    $phone =$_REQUEST['phone'];
-	$email = $_REQUEST['email'];
-	$message = $_REQUEST['message'];
-	$sql = "INSERT INTO contacs (nama, phone,  email, message) VALUES ('$nama', '$phone', '$email', '$message')";
-
-	if ($conn->query($sql) === TRUE){
-		echo "New record created successfully";
-	}else{
-		echo "Error: " .$sql . "<br>" .$conn->error;
-	}
-	$conn->close();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,8 +9,6 @@ require_once 'config.php';
     <meta charset="UTF-8">
     <title>Nur Aisyah</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shelly - Website" />
-    <meta name="author" content="merkulove">
     <meta name="keywords" content="" />
     <link rel="icon" href="assets/img/Black White Minimalist Aesthetic Letter Initial Name Monogram Logo.png">
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css">

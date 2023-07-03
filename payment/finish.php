@@ -28,19 +28,24 @@ try {
 
     $subtotal = array_sum($totals);
 
-    $sql = "INSERT INTO invoices (user_id, destination_id, courier, service, address, total) VALUES ('$user_id', '$destination_id', '$courier', '$service', '$address', '$subtotal')";
+    $sql = "INSERT INTO invoices (user_id, destination_id, courier, service, address) VALUES ('$user_id', '$destination_id', '$courier', '$service', '$address')";
     $conn->query($sql);
     $invoice_id = $conn->insert_id;
 
     $sql = "";
     $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     foreach($items as $key => $item) {
-        $conn->query("INSERT INTO product_checkouts (invoice_id, size_id, qty, total) VALUES ('$invoice_id', '".$item['size']."', '".$item['qty']."', '".$totals[$key]."')");
+        $conn->query("INSERT INTO product_checkouts (invoice_id, product_id, size_id, qty, total) VALUES ('$invoice_id', '".$item['id']."', '".$item['size']."', '".$item['qty']."', '".$totals[$key]."')");
     }
 
     $grand_total = $subtotal + $_SESSION['shipping']['price'];
     $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     $sql = $conn->query("INSERT INTO payments (invoice_id, order_id, purchase_date, status, total) VALUES ('$invoice_id', '$order_id', NOW(), '$transaction_status', $grand_total)");
+
+    session_unset();
+    session_destroy();
+
+    header('location: /order.php');
 } catch (\Throwable $th) {
     print_r($th);
     die;

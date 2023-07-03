@@ -32,5 +32,6 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
+  $cities = $response;
   echo $response;
 }
