@@ -31,7 +31,7 @@ require_once 'config.php';
 
 
                 $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-                $result = $conn -> query ("SELECT *, (SELECT url FROM images WHERE product_id = products.id LIMIT 1 ) AS image FROM products");
+                $result = $conn -> query ("SELECT *, (SELECT url FROM images WHERE product_id = products.id LIMIT 1 ) AS image FROM products WHERE stok > 0");
                 while ($item = $result->fetch_assoc()){
                 ?>
             <div class="col-md-3 col-sm-6">

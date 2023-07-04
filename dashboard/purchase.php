@@ -129,8 +129,8 @@
           <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <h6 class="card-title">Products</h6>
-                <p class="text-muted mb-3"><a href="index.html">Dashboard</a> <code>Product</code></p>
+                <h6 class="card-title">Purchases</h6>
+                <p class="text-muted mb-3"><a href="index.html">Dashboard</a> <code>Purchase</code></p>
                 <div class="table-responsive pt-3">
                   <table class="table table-bordered">
                     <thead>
@@ -143,6 +143,8 @@
                         <th>Services</th>
                         <th>Total Amount</th>
                         <th>Payment Status</th>
+                        <th>Fraud Status</th>
+                        <th>Type</th>
                         <th>Order Status</th>
                         <th>Detail</th>
                       </tr>
@@ -169,6 +171,8 @@
                         <td><?php echo $item['service']; ?></td>
                         <td>Rp.<?php echo number_format($item['total'], 0, '', '.'); ?></td>
                         <td><?php echo strtoupper($item['payment_status']); ?></td>
+                        <td><?php echo strtoupper($item['fraud_status'] ?? '-'); ?></td>
+                        <td><?php echo strtoupper($item['type'] ?? '-'); ?></td>
                         <td><?php echo strtoupper($item['order_status']); ?></td>
                         <td>
                           <button type="button" class="btn btn-primary" onclick="openModal('#detailInvoice-<?php echo $i; ?>')">

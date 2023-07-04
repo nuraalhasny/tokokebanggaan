@@ -1,6 +1,8 @@
 <?php
 
 require_once '../config.php';
+require_once dirname(__FILE__) . '/../helper/logger.php';
+
 session_start();
 
 try {
@@ -39,13 +41,24 @@ try {
     }
 
     $grand_total = $subtotal + $_SESSION['shipping']['price'];
+
+    
     $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = $conn->query("INSERT INTO payments (invoice_id, order_id, purchase_date, status, total) VALUES ('$invoice_id', '$order_id', NOW(), '$transaction_status', $grand_total)");
+    $result = $conn->query("SELECT * FROM payments WHERE order_id = '$order_id'");
+    
+    $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    if ($result->num_rows == 0) {
+        $result = $conn->query("INSERT INTO payments (invoice_id, order_id, purchase_date, status, total) VALUES ('$invoice_id', '$order_id', NOW(), '$transaction_status', $grand_total)");
+        writeLog("INSERT INTO payments (invoice_id, order_id, purchase_date, status, total) VALUES ('$invoice_id', '$order_id', NOW(), '$transaction_status', $grand_total) - is succes : $sql");
+    } else {    
+        $result = $conn->query("UPDATE payments SET `invoice_id` = '$invoice_id', total = '$grand_total' WHERE order_id='$order_id'");
+        writeLog("UPDATE payments SET `invoice_id` = '$invoice_id', total = '$grand_total' WHERE order_id='$order_id'");
+    }
+    
+    unset($_SESSION['items']);
+    unset($_SESSION['shipping']);
 
-    session_unset();
-    session_destroy();
-
-    header('location: /order.php');
+    header('location: /thankyou.php');
 } catch (\Throwable $th) {
     print_r($th);
     die;

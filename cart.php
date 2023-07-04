@@ -120,7 +120,6 @@ if ($total > 0 && isset($_SESSION['shipping']['price'])) {
                         <div class="product">
                           <div class="row">
                             <?php
-                              require_once 'config.php';
                               $items = $_SESSION['items'] ?? null;
                               $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
                               foreach($items as $item) {
