@@ -20,7 +20,7 @@ if(isset($_REQUEST['submit'])){
     }
 
     while($row = $result -> fetch_assoc()){
-        $_SESSION['username'] = $row['username'];
+        $_SESSION['username_admin'] = $row['username'];
         $_SESSION['name'] = $row['name'];
         header('location: index.php');
     }

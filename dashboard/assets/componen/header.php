@@ -99,11 +99,13 @@
 
 $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
-$username = $_SESSION['username'];
+$username = $_SESSION['username_admin'];
 
 
 $result = $conn -> query ("SELECT * FROM user WHERE username = '$username'");
+
 while ($item = $result->fetch_assoc()){
+   
 ?>
                 <p class="tx-16 fw-bolder"><?php echo $item['username'];?></p>
                 <p class="tx-12 text-muted"><?php echo $item['email'];?></p>
@@ -115,7 +117,7 @@ while ($item = $result->fetch_assoc()){
             <ul class="list-unstyled p-1">
               
               <li class="dropdown-item py-2">
-                <a href="javascript:;" class="text-body ms-0">
+                <a href="logout.php" class="text-body ms-0">
                   <i class="me-2 icon-md" data-feather="log-out"></i>
                   <span>Log Out</span>
                 </a>
