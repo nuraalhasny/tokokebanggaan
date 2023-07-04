@@ -10,11 +10,17 @@ if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $name = $_POST['name'];
+    $phone_number = $_POST['phone_number'];
+
+
     
     $password = password_hash($password, PASSWORD_DEFAULT);
    
-    $sql = "INSERT INTO users VALUES('', '$email', '$username', '$password')";
+    $sql = "INSERT INTO users (email, username, password, name, phone_number)VALUES('$email', '$username', '$password', '$name', '$phone_number')";
+    
     if ($conn->query($sql) === TRUE) {
+
         echo "<script> 
         alert('New record created successfully')
         </script>";
@@ -57,13 +63,21 @@ if(isset($_POST['submit'])){
 
                             </div>
                             <form action="" method="post">
+                            <div class="form-group first">
+                                    <label for="email">nama</label>
+                                    <input type="text" class="form-control" id="nama" name="name">
+                                </div>
+                                <div class="form-group first">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username">
+                                </div>
                                 <div class="form-group first">
                                     <label for="email">Email</label>
                                     <input type="text" class="form-control" id="email" name="email">
                                 </div>
                                 <div class="form-group first">
-                                    <label for="username">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username">
+                                    <label for="username">Phone Number</label>
+                                    <input type="text" class="form-control" id="phone_number" name="phone_number">
                                 </div>
                                 <div class="form-group last mb-4">
                                     <label for="password">Password</label>

@@ -12,7 +12,7 @@
 <!-- Count Total -->
 <?php
 $total = 0;
-$items = $_SESSION['items'] ?? null;
+$items = $_SESSION['items'] ?? [];
 $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
 foreach($items as $item) {
