@@ -5,8 +5,10 @@ require_once('config.php');
 $url = URL."/province";
 $curl = curl_init();
 
-if ($id = $_GET['id']) {
-    $url .= "?id=$id";
+if (isset($_GET['id'])) {
+  if ($id = $_GET['id']) {
+      $url .= "?id=$id";
+  }
 }
 
 curl_setopt_array($curl, array(

@@ -17,7 +17,7 @@
               
             </div>
             
-            <a class="nav-link" href="cart.php" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link" href="cart.php" id="navbarDropdownMenuLink" role="button">
             <i class="bi bi-cart"></i>
           </a>
           <div class="nav-item dropdown">

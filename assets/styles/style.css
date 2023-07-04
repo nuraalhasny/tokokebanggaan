@@ -4,9 +4,7 @@ body {
     position: relative;
     font-family: 'Nunito Sans', sans-serif;
 }
-.navbar{
-    padding: 50px;
-}
+
 
 .navbar .navbar-brand {
     font-size: 26px;
