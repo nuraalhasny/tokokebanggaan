@@ -28,7 +28,7 @@ require_once 'config.php';
                     <div class="text-center">
                         <h1>Thank You For Shopping!</h1>
                         <p>Terima kasih telah memesan! Kami sangat bersemangat mengemas pesananmu.</p>
-                        <button class="btn btn btn-primary"><a href="#" class="text-white" style="text-decoration: none;">Back Home</a></button>
+                        <button class="btn btn btn-primary"><a href="/" class="text-white" style="text-decoration: none;">Back Home</a></button>
                     </div>
                 </div>
             </div>

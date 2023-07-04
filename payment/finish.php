@@ -55,10 +55,10 @@ try {
         writeLog("UPDATE payments SET `invoice_id` = '$invoice_id', total = '$grand_total' WHERE order_id='$order_id'");
     }
     
-    // unset($_SESSION['items']);
-    // unset($_SESSION['shipping']);
+    unset($_SESSION['items']);
+    unset($_SESSION['shipping']);
 
-    header('location: /order.php');
+    header('location: /thankyou.php');
 } catch (\Throwable $th) {
     print_r($th);
     die;
