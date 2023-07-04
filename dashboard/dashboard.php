@@ -27,7 +27,7 @@
             <div class="row  align-items-center">
                 <div class="col-lg-6">
                     <div class="dashboard-text-1">
-                        <span>Lightsome</span>
+                        <span>Nur Aisyah</span>
                         <h4>Dress as good as you like</h4>
                     </div>
                 </div>

@@ -54,7 +54,7 @@ if ($total > 0 && isset($_SESSION['shipping']['price'])) {
       $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
       $result = $conn -> query ($sql);
 
-      $grand_total = $total + $_SESSION['shipping']['price'];
+      $grand_total = $total + ((int) $_SESSION['shipping']['price']);
   
       while($row = $result -> fetch_assoc()){
         $params = array(
@@ -86,6 +86,8 @@ if ($total > 0 && isset($_SESSION['shipping']['price'])) {
 	<meta charset="UTF-8">
 	<title>Nur Aisyah</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Shelly - Website" />
+	<meta name="author" content="merkulove">
 	<meta name="keywords" content="" />
   <link rel="icon" href="assets/img/Black White Minimalist Aesthetic Letter Initial Name Monogram Logo.png">
   <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
@@ -178,7 +180,7 @@ if ($total > 0 && isset($_SESSION['shipping']['price'])) {
                             <h3>Summary</h3>
                             <div class="summary-item"><span class="text">Subtotal</span><span class="price">Rp.<?php echo $total;?></span></div>
                             <div class="summary-item"><span class="text">Shipping</span><span class="price">Rp.<?php echo $_SESSION['shipping']['price'] ?? 0 ?></span></div>
-                            <div class="summary-price"><span class="text">Total</span><span class="total-price"> Rp. <?php echo $total+$_SESSION['shipping']['price'];?></span></div>
+                            <div class="summary-price"><span class="text">Total</span><span class="total-price"> Rp. <?php echo $total+((int) $_SESSION['shipping']['price']);?></span></div>
                             <button type="button" class="btn-purchase btn-primary btn-lg btn-block" id="checkout">Checkout</button>
                           <?php } else { ?>
                             <form action="/shipping/shipping.php" method="POST">
@@ -238,14 +240,17 @@ if ($total > 0 && isset($_SESSION['shipping']['price'])) {
      </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/addtocart.js"></script>
-  <script type="text/javascript">
-      const checkoutButton = document.getElementById('checkout');
-      if (checkoutButton) {
-        checkoutButton.addEventListener('click', function () {
-            window.snap.pay('<?php echo $snapToken; ?>');
-        });
-      }
-  </script>
+  <?php 
+    if (isset($snapToken)) { ?>
+      <script type="text/javascript">
+          const checkoutButton = document.getElementById('checkout');
+          if (checkoutButton) {
+            checkoutButton.addEventListener('click', function () {
+                window.snap.pay('<?php echo $snapToken; ?>');
+            });
+          }
+      </script>
+    <?php } ?>
   <script src="assets/js/helper.js"></script>
   <script src="assets/js/shipping.js"></script>
 

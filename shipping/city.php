@@ -7,8 +7,10 @@ $prov_id = $_GET['prov_id'];
 
 $url = URL."/city?province=$prov_id";
 
-if ($id = $_GET['id']) {
-  $url .= "&id=$id";
+if (isset($_GET['id'])) {
+  if ($id = $_GET['id']) {
+    $url .= "&id=$id";
+  }
 }
 
 curl_setopt_array($curl, array(
