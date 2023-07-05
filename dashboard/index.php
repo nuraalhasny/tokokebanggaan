@@ -185,7 +185,7 @@ require_once 'middleware.php';
             <div class="card">
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-baseline mb-2">
-                  <h6 class="card-title mb-0">Projects</h6>
+                  <h6 class="card-title mb-0">Payments</h6>
                   <div class="dropdown mb-2">
                     <a type="button" id="dropdownMenuButton7" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
@@ -214,18 +214,18 @@ require_once 'middleware.php';
                     <tbody>
                       <tr>
                         <td>1</td>
-                        <td>Daster Pendek</td>
-                        <td>01/01/2022</td>
-                        <td>26/04/2022</td>
+                        <td>Daster Pendek Motif Bunga</td>
+                        <td>01/01/2023</td>
+                        <td>06/01/2022</td>
                         <td><span class="badge bg-danger">Terkirim</span></td>
                        
                       </tr>
                      
                       <tr>
                         <td class="border-bottom">3</td>
-                        <td class="border-bottom">Daster Panjang</td>
-                        <td class="border-bottom">01/05/2022</td>
-                        <td class="border-bottom">10/11/2022</td>
+                        <td class="border-bottom">Daster Pendek Motif Bunga</td>
+                        <td class="border-bottom">01/05/2023</td>
+                        <td class="border-bottom">-</td>
                         <td class="border-bottom"><span class="badge bg-info">Belum Bayar</span></td>
                         
                       </tr>
@@ -240,6 +240,7 @@ require_once 'middleware.php';
 			</div>
 
 			<!-- partial:partials/_footer.html -->
+      <?php require_once("assets/componen/footer.php") ?>
 			<!-- partial -->
 		
 		</div>

@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-md-6 col-lg-6">
                     <div class="about-img">
-                    <img src="assets/img/unnamed.jpg" class="img-fluid">
+                    <img src="assets/img/2.png" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="about-img">
-                        <img src="assets/img/unnamed.jpg" class="img-fluid">
+                        <img src="assets/img/nuraisyah (1).jpeg" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-md-6">

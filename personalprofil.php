@@ -43,7 +43,7 @@ require_once 'config.php';
 					<div class="card  p-3 py-4">
 
 						<div class="text-center">
-							<img src="assets/img/blank-profile-picture-973460_960_720-1.png" width="100"
+							<img src="assets/img/avatar.jpg" width="100"
 								class="rounded-circle">
 						</div>
 

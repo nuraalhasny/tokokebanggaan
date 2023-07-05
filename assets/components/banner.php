@@ -6,7 +6,7 @@
                  
                         <h2>Dress as good as you like</h2>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.php">Home</a></li>
                             <li><span>Product</span></li>
                         </ul>
 

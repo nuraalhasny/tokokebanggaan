@@ -28,11 +28,26 @@ require_once 'config.php';
 				<h6>Order ID: OD45345345435</h6>
 				<article class="card">
 					<div class="card-body row">
+					<?php
+                        $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+                        $result = $conn->query("SELECT *, (
+                          SELECT username FROM users WHERE users.id = invoices.user_id
+                        ) AS user_name, 
+                        payments.status AS payment_status, 
+                        invoices.status AS order_status
+                        FROM invoices 
+                        INNER JOIN payments ON invoices.id = payments.invoice_id");
+                        $i = 1;
+                        while ($item = $result->fetch_assoc()) {
+                      ?>
 						<div class="col"> <strong>Estimated Delivery time:</strong> <br>29 Mei 2023 </div>
 						<div class="col"> <strong>Shipping BY:</strong> <br> Jnt, | <i class="fa fa-phone"></i> +628965337837 </div>
 						<div class="col"> <strong>Status:</strong> <br> Picked by the courier </div>
 						<div class="col"> <strong>Tracking #:</strong> <br> BD045903594059 </div>
 					</div>
+					<?php
+						}
+						?>
 				</article>
 				<div class="track">
 					<div class="step active"> <span class="icon"> <i class="bi bi-check-lg"></i></span> <span class="text">Order confirmed</span> </div>

@@ -112,12 +112,7 @@
 
 
         <!-- partial:../../partials/_footer.html -->
-        <footer
-          class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
-          <p class="text-muted mb-1 mb-md-0">Copyright © 2022 <a href="https://www.nobleui.com"
-              target="_blank">NobleUI</a>.</p>
-
-        </footer>
+        
         <!-- partial -->
 
       </div>
@@ -193,6 +188,7 @@
         </div>
       </div>
     <?php $i++; } ?>
+    <?php require_once("assets/componen/footer.php") ?>
 
     <!-- core:js -->
     <script src="assets/vendors/core/core.js"></script>
