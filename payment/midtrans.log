@@ -8,3 +8,12 @@
 2023-07-03 17:00:09 - {"id":"24","invoice_id":null,"order_id":"340564597","purchase_date":"2023-07-03","status":"pending","fraud_status":"accept","type":"bank_transfer","total":null}
 2023-07-03 17:00:09 - Waiting customer to finish transaction order_id: 340564597 using bank_transfer
 2023-07-03 17:00:09 - UPDATE payments SET `invoice_id` = '27', total = '104000' WHERE order_id='340564597'
+2023-07-05 10:35:18 - INSERT INTO payments (order_id, purchase_date, status, fraud_status, `type`) VALUES ('1691039597', NOW(), 'capture', 'accept', 'credit_card')
+2023-07-05 10:35:18 - Store To Database: 1
+2023-07-05 10:35:18 - {"id":"25","invoice_id":null,"order_id":"1691039597","purchase_date":"2023-07-05","status":"capture","fraud_status":"accept","type":"credit_card","total":null}
+2023-07-05 10:35:18 - Transaction order_id: 1691039597 successfully captured using credit_card
+2023-07-05 10:35:23 - UPDATE payments SET `invoice_id` = '28', total = '309000' WHERE order_id='1691039597'
+2023-07-05 11:04:05 - INSERT INTO payments (order_id, purchase_date, status, fraud_status, `type`) VALUES ('1948669548', NOW(), 'expire', 'accept', 'bank_transfer')
+2023-07-05 11:04:05 - Store To Database: 1
+2023-07-05 11:04:05 - {"id":"26","invoice_id":null,"order_id":"1948669548","purchase_date":"2023-07-05","status":"expire","fraud_status":"accept","type":"bank_transfer","total":null}
+2023-07-05 11:04:05 - Payment using bank_transfer for transaction order_id: 1948669548 is expired.

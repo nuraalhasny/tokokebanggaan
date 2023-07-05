@@ -186,49 +186,65 @@ require_once 'middleware.php';
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-baseline mb-2">
                   <h6 class="card-title mb-0">Payments</h6>
-                  <div class="dropdown mb-2">
-                    <a type="button" id="dropdownMenuButton7" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton7">
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="eye" class="icon-sm me-2"></i> <span class="">View</span></a>
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="edit-2" class="icon-sm me-2"></i> <span class="">Edit</span></a>
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="trash" class="icon-sm me-2"></i> <span class="">Delete</span></a>
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="printer" class="icon-sm me-2"></i> <span class="">Print</span></a>
-                      <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i data-feather="download" class="icon-sm me-2"></i> <span class="">Download</span></a>
-                    </div>
-                  </div>
+                  <button class="btn btn-primary" onclick="exportToExcel()">Export To Excel</button>
                 </div>
                 <div class="table-responsive">
-                  <table class="table table-hover mb-0">
+                  <table class="table table-hover mb-0" id="table">
                     <thead>
                       <tr>
                         <th class="pt-0">#</th>
-                        <th class="pt-0">Produk</th>
-                        <th class="pt-0">Tanggal</th>
-                        <th class="pt-0">Pengiriman</th>
-                        <th class="pt-0">Status</th>
-                        
+                        <th class="pt-0">Nama Pelanggan</th>
+                        <th class="pt-0">Tanggal Penjualan</th>
+                        <th class="pt-0">Nomor Transaksi</th>
+                        <th class="pt-0">Informasi Pelanggan</th>
+                        <th class="pt-0">Rincian Produk</th>
                       </tr>
                     </thead>
                     <tbody>
+                    <?php
+                      $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+                      $result = $conn->query("SELECT *, (
+                        SELECT name FROM users WHERE users.id = invoices.user_id
+                      ) AS user_name, (
+                        SELECT phone_number FROM users WHERE users.id = invoices.user_id
+                      ) AS phone_number
+                      FROM invoices 
+                      INNER JOIN payments ON invoices.id = payments.invoice_id");
+                      $i = 1;
+                      while ($item = $result->fetch_assoc()) {
+                    ?>
                       <tr>
-                        <td>1</td>
-                        <td>Daster Pendek Motif Bunga</td>
-                        <td>01/01/2023</td>
-                        <td>06/01/2022</td>
-                        <td><span class="badge bg-danger">Terkirim</span></td>
-                       
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $item['user_name'] ?></td>
+                        <td><?php echo date('d, M Y', strtotime($item['purchase_date'])); ?></td>
+                        <td><?php echo $item['order_id'] ?></td>
+                        <td>
+                          Address : <?php echo $item['address'] ?>
+                          <br>
+                          Phone : <?php echo $item['phone_number'] ?>
+                        </td>
+                        <td>
+                          <?php
+                            $connProduct = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+                            $resultProduct = $connProduct -> query ("
+                            SELECT *, (
+                              SELECT product FROM products WHERE products.id = product_checkouts.product_id LIMIT 1
+                            ) AS product, (
+                              SELECT nama FROM sizes WHERE sizes.id = product_checkouts.size_id LIMIT 1
+                            ) AS size
+                            FROM product_checkouts WHERE invoice_id = '".$item['id']."'");
+                            while ($productItem = $resultProduct->fetch_assoc()){
+                          ?>
+                            Quantity : <?php echo $productItem['qty'] ?>
+                            <br>
+                            Product Name : <?php echo $productItem['product'] ?>
+                            <br>
+                            Size : <?php echo $productItem['size'] ?>
+                            <br><br>
+                          <?php } ?>
+                        </td>
                       </tr>
-                     
-                      <tr>
-                        <td class="border-bottom">3</td>
-                        <td class="border-bottom">Daster Pendek Motif Bunga</td>
-                        <td class="border-bottom">01/05/2023</td>
-                        <td class="border-bottom">-</td>
-                        <td class="border-bottom"><span class="badge bg-info">Belum Bayar</span></td>
-                        
-                      </tr>
+                    <?php $i++; } ?>
                     </tbody>
                   </table>
                 </div>
@@ -263,6 +279,33 @@ require_once 'middleware.php';
 	<!-- Custom js for this page -->
   <script src="assets/js/dashboard-light.js"></script>
 	<!-- End custom js for this page -->
+
+  <!-- Unduh atau sertakan library SheetJS dari CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+  <script>
+    function exportToExcel() {
+        const table = document.getElementById('table');
+        const wb = XLSX.utils.table_to_book(table);
+        const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+
+        // Konversi array menjadi blob
+        const blob = new Blob([wbout], { type: 'application/octet-stream' });
+
+        // Unduh file
+        const fileName = 'data.xlsx';
+        if (navigator.msSaveBlob) {
+            // Untuk Internet Explorer atau Microsoft Edge
+            navigator.msSaveBlob(blob, fileName);
+        } else {
+            // Untuk browser modern
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+        }
+    }
+  </script>
 
 </body>
 </html> 

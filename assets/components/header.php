@@ -1,4 +1,6 @@
-
+<?php
+  session_start();
+?>
 
 <nav class="navbar navbar-expand-lg ">
         <div class="container">
@@ -22,7 +24,16 @@
           </a>
           <div class="nav-item dropdown">
             
-          <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link" href="<?php
+            if(!isset($_SESSION['username'])) {
+              echo 'login.php';
+            } else {
+              echo '#';
+            }
+          ?>" <?php if(isset($_SESSION['username'])) { 
+            echo 'id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"';
+          } 
+          ?>>
           <i class="bi bi-person"></i> User
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
