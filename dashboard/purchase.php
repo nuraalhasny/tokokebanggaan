@@ -73,7 +73,8 @@
                           SELECT username FROM users WHERE users.id = invoices.user_id
                         ) AS user_name, 
                         payments.status AS payment_status, 
-                        invoices.status AS order_status
+                        invoices.status AS order_status, 
+                        invoices.id AS invoices_id
                         FROM invoices 
                         INNER JOIN payments ON invoices.id = payments.invoice_id");
                         $i = 1;
@@ -90,7 +91,18 @@
                         <td><?php echo strtoupper($item['payment_status']); ?></td>
                         <td><?php echo strtoupper($item['fraud_status'] ?? '-'); ?></td>
                         <td><?php echo strtoupper($item['type'] ?? '-'); ?></td>
-                        <td><?php echo strtoupper($item['order_status']); ?></td>
+                        <td>
+                          <form action="change-status.php" method="POST" id="form-<?php echo $item['id']; ?>">
+                            <input type="hidden" name="id" value="<?php echo $item['invoices_id']; ?>">
+                            <select name="order_status" onchange="document.querySelector('#form-<?php echo $item['id']; ?>').submit()">
+                              <option value="Waiting Confirmation" <?php echo $item['order_status'] == 'Waiting Confirmation' ? 'selected="true"' : '' ?> disabled>Waiting Confirmation</option>
+                              <option value="Order confirmed" <?php echo $item['order_status'] == 'Order Confirmed' ? 'selected="true"' : '' ?> >Order Confirmed</option>
+                              <option value="Picked by courier" <?php echo $item['order_status'] == 'Picked by courier' ? 'selected="true"' : '' ?>>Picked by courier</option>
+                              <option value="On the way" <?php echo $item['order_status'] == 'On the way' ? 'selected="true"' : '' ?>>On the way</option>
+                              <option value="Ready for pickup" <?php echo $item['order_status'] == 'Ready for pickup' ? 'selected="true"' : '' ?>>Ready for pickup</option>
+                            </select>
+                          </form>
+                        </td>
                         <td>
                           <button type="button" class="btn btn-primary" onclick="openModal('#detailInvoice-<?php echo $i; ?>')">
                             Detail
